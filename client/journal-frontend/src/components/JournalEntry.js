@@ -34,9 +34,31 @@ export default class JournalEntry extends Component {
     async handleSubmit(event, id){
         event.preventDefault();
         const {item} = this.state;
-        if(`${window.location.href}` === `http://localhost:3000/journal-entries`)
+        if(`${window.location.href}` === `http://localhost:3000/journal-entries/new`){
+            await fetch(`/journal-app/v1/journal-entries`,{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item),
+            });
+            this.props.history.push('/journal-entries');
+        } else{
+            await fetch(`/journal-app/v1/journal-entries${this.props.match.params.id}`, {
+                method: 'PUT', 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item),
+            });
+            this.props.history.push('/journal-entries');
+        }
     }
     render() {
+        const{item} = this.state;
+        const title = <h2>{this.props.match.params.id ? 'Edit Employee' : 'Add Employee'}</h2>
         return (
             <div>
                 
