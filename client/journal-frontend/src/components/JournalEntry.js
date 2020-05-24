@@ -25,7 +25,16 @@ export default class JournalEntry extends Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        
+        let item = {...this.state.item};
+        item[name] = value;
+        this.setState({item});
+
+    }
+
+    async handleSubmit(event, id){
+        event.preventDefault();
+        const {item} = this.state;
+        if(`${window.location.href}` === `http://localhost:3000/journal-entries`)
     }
     render() {
         return (
