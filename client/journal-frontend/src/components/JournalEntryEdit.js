@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import AppNavBar from './AppNavBar';
+import { Link, withRouter } from 'react-router-dom';
+import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
-export default class JournalEntry extends Component {
+
+export default class JournalEntryEdit extends Component {
 
     emptyItem = {
         journalEntryText: ''
@@ -17,7 +21,7 @@ export default class JournalEntry extends Component {
 
     async componentDidMount(){
         if (this.props.match.params.id !== 'new') {
-            const group = await (await fetch `/journal-app/v1/journal_entries${this.props.match.params.id}`)).json();
+            const group = await (await fetch (`/journal-app/v1/journal_entries${this.props.match.params.id}`)).json();
         }
     }
 
@@ -58,12 +62,23 @@ export default class JournalEntry extends Component {
     }
     render() {
         const{item} = this.state;
-        const title = <h2>{this.props.match.params.id ? 'Edit Employee' : 'Add Employee'}</h2>
+        const title = <h2>{window.location.href ===  `http://localhost:3000/journal-entries/new`? 'Edit Journal Entry' : 'Add Journal Entry'}</h2>
         
         return (
             <div>
-                <AppNAvBar/>
-                <Container
+                <AppNavBar/>
+                <Container/>
+                {/* {title} */}
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label>Enter Journal Entry</Label>
+                        <textarea type="text" name="journalEntryText" id="journalEntryText" value={item.journalEntryText}></textarea>
+                    </FormGroup>
+                    <FormGroup>
+                        <Button color="primary" type="submit">Save</Button>
+                        <Button color="secondary" tag={Link} to="/journal_enrties">Cancel</Button>
+                    </FormGroup>
+                </Form>
                 
             </div>
         )
