@@ -43,11 +43,11 @@ public class JournalEntryController {
     }
     //get all JournalEntries by id
 
-    @GetMapping("/journal-entries/{id}")
-    public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable(value = "journalEntryId") Long journalEntryId)
+    @GetMapping("/journal-entries/{journalEntryId}")
+    public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
-        JournalEntry journalEntry = journalRepository.findById(journalEntryId)
-                .orElseThrow(()-> new ResourceNotFoundException("Journal Entry not found for this id ::" + journalEntryId ));
+        JournalEntry journalEntry = journalRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Journal Entry not found for this id ::" + id ));
         return ResponseEntity.ok().body(journalEntry);
     }
     //save journalEntry
@@ -60,10 +60,10 @@ public class JournalEntryController {
     //Update JournalEntry
 
     @PutMapping("/journal-entries/{id}")
-    public ResponseEntity<JournalEntry> updateJournalEntriesById(@PathVariable(value = "journalEntryId") Long journalEntryId, @Valid @RequestBody JournalEntry journalEntryDetails)
+    public ResponseEntity<JournalEntry> updateJournalEntriesById(@PathVariable(value = "id") Long id, @Valid @RequestBody JournalEntry journalEntryDetails)
             throws ResourceNotFoundException {
-        JournalEntry journalEntry = journalRepository.findById(journalEntryId)
-                .orElseThrow(()-> new ResourceNotFoundException("Journal Entry not found for this id :: " + journalEntryId));
+        JournalEntry journalEntry = journalRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Journal Entry not found for this id :: " + id));
 
         journalEntry.setJournalEntryText(journalEntryDetails.getJournalEntryText());
         journalEntry.setJournalEntryDate(journalEntryDetails.getJournalEntryDate());
@@ -76,10 +76,10 @@ public class JournalEntryController {
     }
 
     @DeleteMapping("/journal-entries/{id}")
-    public Map<String, Boolean> deletedImage(@PathVariable(value = "journalEntryId") Long journalEntryId)
+    public Map<String, Boolean> deletedImage(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
-        JournalEntry journalEntry = journalRepository.findById(journalEntryId)
-                .orElseThrow(()-> new ResourceNotFoundException("Journal Entry not found for this id :: " + journalEntryId));
+        JournalEntry journalEntry = journalRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Journal Entry not found for this id :: " + id));
 
 
         journalRepository.delete(journalEntry);

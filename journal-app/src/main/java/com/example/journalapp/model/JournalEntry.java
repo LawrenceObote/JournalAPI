@@ -17,9 +17,9 @@ public class JournalEntry {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "Journal_Entry_Id")
-    private long journalEntryId;
+    private long id;
 
     @Column(name = "Entry_text")
     private String journalEntryText;
@@ -33,17 +33,17 @@ public class JournalEntry {
 
     public JournalEntry(String chatComment, long commentDate){
         super();
-        this.journalEntryId = journalEntryId;
+        this.id = id;
         this.journalEntryText = journalEntryText;
         this.journalEntryDate = journalEntryDate;
     }
 
     public long getJournalEntryId() {
-        return journalEntryId;
+        return id;
     }
 
     public void setJournalEntryId(long commentId){
-        this.journalEntryId = journalEntryId;
+        this.id = id;
     }
 
     public String getJournalEntryText() {
