@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavBar';
 import { Link } from 'react-router-dom';
-import JournalEntry from './JournalEntry';
 import Image from './Image'
 
-class EmployeeList extends Component {
+class EntryList extends Component {
 
   constructor(props) {
     super(props);
@@ -86,11 +85,10 @@ class EmployeeList extends Component {
             {journalList}
             </tbody>
           </Table>
-          <Image></Image>
         </Container>
       </div>
     );
   }
 }
 
-export default EmployeeList;
+export default EntryList;

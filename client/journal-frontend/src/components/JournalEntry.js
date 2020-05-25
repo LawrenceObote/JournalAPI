@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import Image from './Image'
 
 export default class JournalEntry extends Component {
-    state = {
-            text: this.props
-    }
-
+    
+state = {
+    text: this.props.location.state
+}
     componentDidMount(){
-        // const { id } = this.props.match.params;
-        // fetch(`http://localhost:3000/journal-entries/entry/${id}`)
-
-        // fetch(`/journal-app/v1/journal-entries/${id}`)
-        // .then(response => response.json())
-        // .then(data => this.setState({journals: data, isLoading: false}));
-        // console.log(this.state.journals);
+        
+        Axios.get(`https://api.unsplash.com/photos/random/?client_id=uhvBFtW47CHc5C94qmgVFRbRhXLRsFSsBoJd8zkOlCY`)
+        .then((response) => {
+            console.log(response.data.urls.small);
+            this.setState({
+                picture: response.data.urls.small
+            });
+            
+        })
         
     }
     
@@ -22,9 +23,11 @@ export default class JournalEntry extends Component {
     
 
     render() {
+        let {text} = this.props.location.state;
         return (
             <div>
-                <h1>hello</h1>
+                <img src={`${this.state.picture}`} alt="Random"></img>
+                <h1>{text}</h1>
                 
                 
             </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Button } from 'reactstrap';
 import JournalEntryEdit from './components/JournalEntryEdit';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import EntryList from './components/EntryList';
 import JournalEntry from './components/JournalEntry';
+
 
 
 function App() {

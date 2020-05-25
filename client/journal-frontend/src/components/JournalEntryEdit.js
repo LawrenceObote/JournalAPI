@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import AppNavbar from './AppNavBar';
-import axios from 'axios';
 
 class JournalEntryEdit extends Component {
 
@@ -50,6 +49,7 @@ class JournalEntryEdit extends Component {
         },
         body: JSON.stringify(item),
       });
+      console.log("for", this.props.history.push);
       this.props.history.push('/journal-entries');
       console.log(JSON.stringify(item));
     } else{
