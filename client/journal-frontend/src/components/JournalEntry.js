@@ -38,11 +38,8 @@ state = {
         return (
             <div>
                 <img src={`${this.state.picture}`} alt="Random"></img>
-                <h1>hello</h1>
                 <h1>{this.props.location.state.text}</h1>
                 <p>{this.state.comment}</p>
-
-                <Comments></Comments>
                 
                 
                 

@@ -80,11 +80,6 @@ class JournalEntryEdit extends Component {
             <textarea type="text" name="journalEntryText" value={item.journalEntryText || ''}
                    onChange={this.handleChange} autoComplete="journalEntryText"/>
           </FormGroup>
-          <FormGroup>
-            <Label for="lastName">Last Name</Label>
-            <Input type="text" name="journalEntryDate"  value={item.journalEntryDate || ''}
-                   onChange={this.handleChange} autoComplete="journalEntryDate"/>
-          </FormGroup>
           
           <FormGroup>
             <Button color="primary" type="submit">Save</Button>{' '}

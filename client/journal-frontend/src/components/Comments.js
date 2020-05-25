@@ -83,22 +83,6 @@ export default class Comments extends Component {
     
         
     
-        // const commentList = comments.map(comment => {
-        //   console.log('aaa', comment);
-        //   return <tr key={comments.commentId}>
-            
-        //     <td style={{whiteSpace: 'nowrap'}}>{comments.chatComment}</td>
-        //     <td>{comments.chatComment}</td>
-            
-            
-        //     <td>
-        //       <ButtonGroup>
-        //         <Button size="sm" color="primary" tag={Link} to={`/comments/${comments.chatComment}` + comments.commentId}>Edit</Button>
-        //         <Button size="sm" color="danger" onClick={() => this.remove(comments.chatComment)}>Delete</Button>
-        //       </ButtonGroup>
-        //     </td>
-        //   </tr>
-        // });
     
         return (
           <div>
