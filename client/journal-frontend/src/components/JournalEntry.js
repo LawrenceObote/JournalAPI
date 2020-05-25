@@ -1,24 +1,34 @@
 import React, { Component } from 'react'
+import Axios from 'axios'
+import Image from './Image'
 
 export default class JournalEntry extends Component {
+    state = {
+            text: this.props
+    }
+
+    componentDidMount(){
+        // const { id } = this.props.match.params;
+        // fetch(`http://localhost:3000/journal-entries/entry/${id}`)
+
+        // fetch(`/journal-app/v1/journal-entries/${id}`)
+        // .then(response => response.json())
+        // .then(data => this.setState({journals: data, isLoading: false}));
+        // console.log(this.state.journals);
+        
+    }
+    
+
+    
+
     render() {
-        const journalEntryList = journal_entries.map(journal_entries => {
-            return <tr key={journal_entries.id}>
-              <td style={{whiteSpace: 'nowrap'}}>{journal_entries.journalEntryText}</td>
-              <td>{journal_entries.id}</td>
-             
-              <td>
-                <ButtonGroup>
-                  <Button size="sm" color="primary" tag={Link} to={"/journal-entries/" + journal_entries.journalEntryId}>Edit</Button>
-                  <Button size="sm" color="danger" onClick={() => this.remove(this.props.match.params.id)}>Delete</Button>
-                </ButtonGroup>
-              </td>
-            </tr>
-          });
         return (
             <div>
+                <h1>hello</h1>
+                
                 
             </div>
         )
     }
 }
+

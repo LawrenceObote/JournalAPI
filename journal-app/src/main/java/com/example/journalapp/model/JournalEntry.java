@@ -33,7 +33,6 @@ public class JournalEntry {
 
     public JournalEntry(String chatComment, long commentDate){
         super();
-        this.id = id;
         this.journalEntryText = journalEntryText;
         this.journalEntryDate = journalEntryDate;
     }
@@ -42,7 +41,7 @@ public class JournalEntry {
         return id;
     }
 
-    public void setJournalEntryId(long commentId){
+    public void setJournalEntryId(long id){
         this.id = id;
     }
 

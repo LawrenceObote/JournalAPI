@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavBar';
 import { Link } from 'react-router-dom';
+import JournalEntry from './JournalEntry';
+import Image from './Image'
 
 class EmployeeList extends Component {
 
@@ -28,7 +30,6 @@ class EmployeeList extends Component {
         'Content-Type': 'application/json'
       }
     }).then(() => {
-      
       let updatedJournals = [...this.state.journals].filter(i => i.id !== id);
       this.setState({journals: updatedJournals});
     });
@@ -44,11 +45,20 @@ class EmployeeList extends Component {
     const journalList = journals.map(journal_entries => {
       console.log('aaa', journal_entries);
       return <tr key={journal_entries.id}>
-        <td style={{whiteSpace: 'nowrap'}}>{journal_entries.journalEntryText}</td>
+        <Link to={{
+            pathname: `journal-entry/${journal_entries.journalEntryId}`,
+            state:{
+                text: journal_entries.journalEntryText
+            }
+        }}>
+        <td style={{whiteSpace: 'nowrap'}} tag={Link} to={"/journal-entries/entry/" + journal_entries.journalEntryId}>{journal_entries.journalEntryText}</td>
+        </Link>
         <td>{journal_entries.journalEntryId}</td>
+        
+        
         <td>
           <ButtonGroup>
-            <Button size="sm" color="primary" tag={Link} to={"/journal-entries/" + journal_entries.journalEntryId}>Edit</Button>
+            <Button size="sm" color="primary" tag={Link} to={`/journal-entries/entry/${journal_entries.journalEntryId}` + journal_entries.journalEntryId}>Edit</Button>
             <Button size="sm" color="danger" onClick={() => this.remove(journal_entries.journalEntryId)}>Delete</Button>
           </ButtonGroup>
         </td>
@@ -67,15 +77,16 @@ class EmployeeList extends Component {
             <thead>
             <tr>
               <th width="20%">Journal Text</th>
-              <th width="20%">Last Name</th>
-              <th>Email</th>
+              <th width="20%">Entry Id</th>
               <th width="10%">Actions</th>
+              <th width="10%">Open</th>
             </tr>
             </thead>
             <tbody>
             {journalList}
             </tbody>
           </Table>
+          <Image></Image>
         </Container>
       </div>
     );
