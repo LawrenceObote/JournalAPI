@@ -50,14 +50,14 @@ class EntryList extends Component {
                 text: journal_entries.journalEntryText
             }
         }}>
-        <td style={{whiteSpace: 'nowrap'}} tag={Link} to={"/journal-entries/entry/" + journal_entries.journalEntryId}>{journal_entries.journalEntryText}</td>
+        <td style={{whiteSpace: 'nowrap'}} tag={Link} to={"/journal-entries/" + journal_entries.journalEntryId}>{journal_entries.journalEntryText}</td>
         </Link>
         <td>{journal_entries.journalEntryId}</td>
         
         
         <td>
           <ButtonGroup>
-            <Button size="sm" color="primary" tag={Link} to={`/journal-entries/entry/${journal_entries.journalEntryId}` + journal_entries.journalEntryId}>Edit</Button>
+            <Button size="sm" color="primary" tag={Link} to={`/journal-entries/` + journal_entries.journalEntryId}>Edit</Button>
             <Button size="sm" color="danger" onClick={() => this.remove(journal_entries.journalEntryId)}>Delete</Button>
           </ButtonGroup>
         </td>
