@@ -57,8 +57,8 @@ class EntryList extends Component {
         
         <td>
           <ButtonGroup>
-            <Button size="sm" color="primary" tag={Link} to={`/journal-entries/` + journal_entries.journalEntryId}>Edit</Button>
-            <Button size="sm" color="danger" onClick={() => this.remove(journal_entries.journalEntryId)}>Delete</Button>
+            <Button size="sm" color="danger" tag={Link} to={`/journal-entries/` + journal_entries.journalEntryId}>Edit</Button>
+            <Button size="sm" color="secondary" onClick={() => this.remove(journal_entries.journalEntryId)}>Delete</Button>
           </ButtonGroup>
         </td>
       </tr>
