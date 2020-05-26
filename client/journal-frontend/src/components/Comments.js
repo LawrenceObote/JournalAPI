@@ -9,16 +9,26 @@ export default class Comments extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            chatComment: '',
             comments: [], 
             isLoading: true,
             item: []
         };
         this.remove = this.remove.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         
       }
 
-    async handleSubmit(event, id) {
+    async handleSubmit(event) {
         event.preventDefault();
+        const data = new FormData(event.target);
+
+        fetch('/journal-app/v1/comments', {
+            method: 'POST',
+            body: data,
+        })
+        
+
         console.log("aaaa", window.location.href);
         if(`${window.location.href}` === `http://localhost:3000/comments/new`){
           await fetch(`/journal-app/v1/comments`, {
@@ -31,21 +41,22 @@ export default class Comments extends Component {
           });
           
           this.props.history.push('/comments');
-          console.log(JSON.stringify(this.state.comments));
-        } else{
-          await fetch(`/journal-app/v1/comments/${this.props.match.params.id}`, {
-            method: 'PUT',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state.comment),
-          });
-          this.props.history.push(`/comments`);
-        }
-      }
+          console.log(JSON.stringify(this.state.comment));
+         } 
+    //       await fetch(`/journal-app/v1/comments/`, {
+    //         method: 'PUT',
+    //         headers: {
+    //           'Accept': 'application/json',
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(this.state.comment),
+    //       });
+    //       this.props.history.push(`/comments`);
+    //     }
+       }
 
     componentDidMount() {
+        
         this.setState({isLoading: true});
     
         fetch('/journal-app/v1/comments')
@@ -62,10 +73,11 @@ export default class Comments extends Component {
             
         }) 
       }
-      handleChange(event) {
-        let item = {}
-        item[event.target.name] = event.target.value;
-        this.setState(item);
+      handleInputChange(event) {
+        event.preventDefault()
+        this.setState({
+            [event.target.name]: event.target.value
+        })
       }
 
 
@@ -81,6 +93,12 @@ export default class Comments extends Component {
           let updatedComments = [...this.state.comments].filter(i => i.id !== id);
           this.setState({comments: updatedComments});
         });
+      }
+
+      handleChange = (event) => {
+            this.setState({
+                chatComment: event.target.value
+            })
       }
 
      
@@ -103,8 +121,8 @@ export default class Comments extends Component {
           <div>
               <Form onSubmit={this.handleSubmit}>
                   <label>Enter Comment</label>
-              <input type="text" name="chatComment" value={this.state.comment || ''}
-                   onChange={e => this.setState({comment: e.target.value})}/>
+              <input type="text" name="chatComment" value={this.state.chatComment || ''}
+                   onChange={this.handleChange}/>
                    <Button color="primary" type="submit">Save</Button>
                    </Form>
             <p>{commentList}</p>
