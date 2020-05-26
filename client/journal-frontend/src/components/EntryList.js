@@ -78,7 +78,6 @@ class EntryList extends Component {
               <th width="20%">Journal Text</th>
               <th width="20%">Entry Id</th>
               <th width="10%">Actions</th>
-              <th width="10%">Open</th>
             </tr>
             </thead>
             <tbody>
