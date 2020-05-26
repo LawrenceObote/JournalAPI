@@ -7,7 +7,7 @@ import { Button, Container } from 'reactstrap';
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <AppNavbar/>
         <Container fluid>
           <Button outline color="secondary"><Link to="/journal-entries" id="Journal-entries">Journal Entries</Link></Button>
