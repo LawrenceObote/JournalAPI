@@ -69,7 +69,7 @@ class EntryList extends Component {
         <AppNavbar/>
         <Container fluid>
           <div className="float-right">
-            <Button color="success" tag={Link} to="/journal-entries/new">Add Group</Button>
+            <Button color="secondary" tag={Link} to="/journal-entries/new">Add Entry</Button>
           </div>
           <h3>Journals List</h3>
           <Table className="mt-4">
