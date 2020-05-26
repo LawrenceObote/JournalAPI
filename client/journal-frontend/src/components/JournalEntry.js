@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Comments from './Comments'
 
+
 export default class JournalEntry extends Component {
     
 state = {

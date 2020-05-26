@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';
+import { Button, ButtonGroup, Container, Table, Form, Formgroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import AppNavbar from './AppNavBar';
 import axios from 'axios';
@@ -8,14 +8,17 @@ export default class Comments extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {comments: [], isLoading: true};
+        this.state = {
+            comments: [], 
+            isLoading: true,
+            item: []
+        };
         this.remove = this.remove.bind(this);
         
       }
 
     async handleSubmit(event, id) {
         event.preventDefault();
-        const {item} = this.state;
         console.log("aaaa", window.location.href);
         if(`${window.location.href}` === `http://localhost:3000/comments/new`){
           await fetch(`/journal-app/v1/comments`, {
@@ -24,11 +27,11 @@ export default class Comments extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(item),
+            body: JSON.stringify(this.state.comment),
           });
           
           this.props.history.push('/comments');
-          console.log(JSON.stringify(item));
+          console.log(JSON.stringify(this.state.comments));
         } else{
           await fetch(`/journal-app/v1/comments/${this.props.match.params.id}`, {
             method: 'PUT',
@@ -36,7 +39,7 @@ export default class Comments extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(item),
+            body: JSON.stringify(this.state.comment),
           });
           this.props.history.push(`/comments`);
         }
@@ -57,11 +60,15 @@ export default class Comments extends Component {
                 comments: response.data
             });
             
-        })
-
-
-        console.log(this.state.comments);
+        }) 
       }
+      handleChange(event) {
+        let item = {}
+        item[event.target.name] = event.target.value;
+        this.setState(item);
+      }
+
+
     
       async remove(id) {
         await fetch(`/journal-app/v1/comments/${id}`, {
@@ -76,8 +83,10 @@ export default class Comments extends Component {
         });
       }
 
+     
+
     render() {
-        const comments = this.state.comments;
+        let comments = this.state.comments;
         console.log(this.state);
         
         
@@ -90,9 +99,14 @@ export default class Comments extends Component {
     
         
     
-    
         return (
           <div>
+              <Form onSubmit={this.handleSubmit}>
+                  <label>Enter Comment</label>
+              <input type="text" name="chatComment" value={this.state.comment || ''}
+                   onChange={e => this.setState({comment: e.target.value})}/>
+                   <Button color="primary" type="submit">Save</Button>
+                   </Form>
             <p>{commentList}</p>
           </div>
         );
