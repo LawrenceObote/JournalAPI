@@ -123,7 +123,7 @@ export default class Comments extends Component {
                   <label>Enter Comment</label>
               <input type="text" name="chatComment" value={this.state.chatComment || ''}
                    onChange={this.handleChange}/>
-                   <Button color="primary" type="submit">Save</Button>
+                   <Button color="secondary" type="submit">Save</Button>
                    </Form>
             <p>{commentList}</p>
           </div>
