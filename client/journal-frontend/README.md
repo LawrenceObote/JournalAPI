@@ -6,3 +6,4 @@
 This app is a journal that is meant for people who want to store their writings on the internet.
 
 ## Wireframe
+![WireFrame 1](WireFrame1.png)
