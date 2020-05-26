@@ -6,6 +6,13 @@ import axios from 'axios';
 
 export default class Comments extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {comments: [], isLoading: true};
+        this.remove = this.remove.bind(this);
+        
+      }
+
     async handleSubmit(event, id) {
         event.preventDefault();
         const {item} = this.state;
@@ -43,14 +50,17 @@ export default class Comments extends Component {
           .then(data => this.setState({comments: data, isLoading: false}));
 
 
-          axios.get(`/journal-app/v1/comments`)
+          axios.get(`http://localhost:3000/journal-app/v1/comments`)
         .then((response) => {
             console.log(response.data);
             this.setState({
-                commentText: response.data.chatComment
+                comments: response.data
             });
             
         })
+
+
+        console.log(this.state.comments);
       }
     
       async remove(id) {
@@ -67,26 +77,23 @@ export default class Comments extends Component {
       }
 
     render() {
+        const comments = this.state.comments;
         console.log(this.state);
-        const {comments, isLoading} = this.state;
-
-        if (isLoading) {
-            return <p>Loading...</p>
-        }
-
-        const commentList = comments.map(comment  => {
+        
+        
+         const commentList = comments.map(comments  => {
             return <>
             <h1 key={comments.id}></h1>
-                <p>{comment.chatComment}</p>
+                <p>{comments.chatComment}</p>
         </>
-        })
+        });
     
         
     
     
         return (
           <div>
-            
+            <p>{commentList}</p>
           </div>
         );
       }

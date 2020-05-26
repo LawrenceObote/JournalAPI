@@ -33,13 +33,13 @@ state = {
     
 
     render() {
-        console.log(this.state.comment);
         const {journalText} = this.props.location.state;
         return (
             <div>
                 <img src={`${this.state.picture}`} alt="Random"></img>
                 <h1>{this.props.location.state.text}</h1>
                 <p>{this.state.comment}</p>
+                <Comments></Comments>
                 
                 
                 
