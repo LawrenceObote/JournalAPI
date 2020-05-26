@@ -5,11 +5,7 @@ import AppNavbar from './AppNavBar';
 
 class JournalEntryEdit extends Component {
 
-  emptyItem = {
-    firstName: '',
-    lastName: '',
-    email: ''
-  };
+
 
   constructor(props) {
     super(props);
