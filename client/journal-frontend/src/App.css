@@ -40,3 +40,8 @@
 *{
   font-family: 'Poppins', sans-serif;
 }
+
+#Journal-entries{
+  font-size: 2rem;
+  color: black;
+}
