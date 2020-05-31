@@ -23,19 +23,20 @@ export default class Comments extends Component {
         event.preventDefault();
         const data = new FormData(event.target);
         
-        fetch('https://journal-backend1.herokuapp.com/journal-app/v1/comments', {
+        fetch('journal-app/v1/comments', {
             method: 'POST',
-            body: JSON.stringify(data),
+            
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(data)
         })
         
 
         console.log("aaaa", window.location.href);
-        if(`${window.location.href}` === `https://journal-frontend.herokuapp.com/journal-entries/new` || `https://journal-frontend.herokuapp.com/journal-entries/new`){
-          await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/comments`, {
+        if(`${window.location.href}` === `/journal-entries/new`){
+          await fetch(`/journal-app/v1/comments`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -44,7 +45,7 @@ export default class Comments extends Component {
             body: JSON.stringify(this.state.comment),
           });
           
-          this.props.history.push('https://journal-backend1.herokuapp.com/comments');
+          this.props.history.push('/comments');
           console.log(JSON.stringify(this.state.comment));
          } 
     //       await fetch(`/journal-app/v1/comments/`, {
@@ -63,12 +64,12 @@ export default class Comments extends Component {
         
         this.setState({isLoading: true});
     
-        fetch('https://journal-backend1.herokuapp.com/journal-app/v1/comments')
+        fetch('/journal-app/v1/comments')
           .then(response => response.json())
           .then(data => this.setState({comments: data, isLoading: false}));
 
 
-          axios.get(`http://localhost:3000/journal-app/v1/comments`)
+          axios.get(`/journal-app/v1/comments`)
         .then((response) => {
             console.log(response.data);
             this.setState({

@@ -22,7 +22,7 @@ class JournalEntryEdit extends Component {
 
   async componentDidMount() {
     if (this.props.match.params.id !== 'new') {
-      const group = await (await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries${this.props.match.params.id}`)).json();
+      const group = await (await fetch(`/journal-app/v1/journal-entries${this.props.match.params.id}`)).json();
       this.setState({item: group});
     }
   }
@@ -39,9 +39,9 @@ class JournalEntryEdit extends Component {
   async handleSubmit(event, id) {
     event.preventDefault();
     const {item} = this.state;
-    console.log("aaaa", window.location.href);
+    
     if(`${window.location.href}` === `http://localhost:3000/journal-entries/new`){
-      await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries`, {
+      await fetch(`/journal-app/v1/journal-entries`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
