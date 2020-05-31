@@ -22,8 +22,8 @@ export default class Comments extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-
-        fetch('/journal-app/v1/comments', {
+        
+        fetch('https://journal-backend1.herokuapp.com/journal-app/v1/comments', {
             method: 'POST',
             body: data,
         })
@@ -31,7 +31,7 @@ export default class Comments extends Component {
 
         console.log("aaaa", window.location.href);
         if(`${window.location.href}` === `http://localhost:3000/comments/new`){
-          await fetch(`/journal-app/v1/comments`, {
+          await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/comments`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -40,7 +40,7 @@ export default class Comments extends Component {
             body: JSON.stringify(this.state.comment),
           });
           
-          this.props.history.push('/comments');
+          this.props.history.push('https://journal-backend1.herokuapp.com/comments');
           console.log(JSON.stringify(this.state.comment));
          } 
     //       await fetch(`/journal-app/v1/comments/`, {
@@ -59,7 +59,7 @@ export default class Comments extends Component {
         
         this.setState({isLoading: true});
     
-        fetch('/journal-app/v1/comments')
+        fetch('https://journal-backend1.herokuapp.com/journal-app/v1/comments')
           .then(response => response.json())
           .then(data => this.setState({comments: data, isLoading: false}));
 
@@ -83,7 +83,7 @@ export default class Comments extends Component {
 
     
       async remove(id) {
-        await fetch(`/journal-app/v1/comments/${id}`, {
+        await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/comments/${id}`, {
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
