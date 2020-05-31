@@ -16,13 +16,13 @@ class EntryList extends Component {
   componentDidMount() {
     this.setState({isLoading: true});
 
-    fetch('/journal-app/v1/journal-entries')
+    fetch('https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries')
       .then(response => response.json())
       .then(data => this.setState({journals: data, isLoading: false}));
   }
 
   async remove(id) {
-    await fetch(`/journal-app/v1/journal-entries/${id}`, {
+    await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries/${id}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -45,7 +45,7 @@ class EntryList extends Component {
       console.log('aaa', journal_entries);
       return <tr key={journal_entries.id}>
         <Link to={{
-            pathname: `journal-entry/${journal_entries.journalEntryId}`,
+            pathname: `https://journal-backend1.herokuapp.com/journal-entry/${journal_entries.journalEntryId}`,
             state:{
                 text: journal_entries.journalEntryText
             }

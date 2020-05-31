@@ -22,7 +22,7 @@ class JournalEntryEdit extends Component {
 
   async componentDidMount() {
     if (this.props.match.params.id !== 'new') {
-      const group = await (await fetch(`/journal-app/v1/journal-entries${this.props.match.params.id}`)).json();
+      const group = await (await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries${this.props.match.params.id}`)).json();
       this.setState({item: group});
     }
   }
@@ -41,7 +41,7 @@ class JournalEntryEdit extends Component {
     const {item} = this.state;
     console.log("aaaa", window.location.href);
     if(`${window.location.href}` === `http://localhost:3000/journal-entries/new`){
-      await fetch(`/journal-app/v1/journal-entries`, {
+      await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -53,7 +53,7 @@ class JournalEntryEdit extends Component {
       this.props.history.push('/journal-entries');
       console.log(JSON.stringify(item));
     } else{
-      await fetch(`/journal-app/v1/journal-entries/${this.props.match.params.id}`, {
+      await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/journal-entries/${this.props.match.params.id}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -61,7 +61,7 @@ class JournalEntryEdit extends Component {
         },
         body: JSON.stringify(item),
       });
-      this.props.history.push(`/journal-entries`);
+      this.props.history.push(`https://journal-backend1.herokuapp.com/journal-entries`);
     }
   }
 

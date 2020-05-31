@@ -19,7 +19,7 @@ state = {
             
         })
 
-        axios.get(`http://localhost:3000/journal-app/v1/comments`)
+        axios.get(`https://journal-backend1.herokuapp.com/journal-app/v1/comments`)
         .then((resp) => {
             console.log(resp);
             this.setState({
