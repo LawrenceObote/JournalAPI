@@ -2,7 +2,7 @@
   "name": "journal-frontend",
   "version": "0.1.0",
   "engines": {
-    "node": "14.1.0"
+    "node": "14.3.0"
   },
   "private": true,
   "dependencies": {
