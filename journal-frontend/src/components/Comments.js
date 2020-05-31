@@ -34,7 +34,7 @@ export default class Comments extends Component {
         
 
         console.log("aaaa", window.location.href);
-        if(`${window.location.href}` === `https://journal-frontend.herokuapp.com/journal-entries/new`){
+        if(`${window.location.href}` === `https://journal-frontend.herokuapp.com/journal-entries/new` || `https://journal-frontend.herokuapp.com/journal-entries/new`){
           await fetch(`https://journal-backend1.herokuapp.com/journal-app/v1/comments`, {
             method: 'POST',
             headers: {
