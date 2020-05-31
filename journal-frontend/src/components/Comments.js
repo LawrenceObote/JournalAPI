@@ -25,7 +25,7 @@ export default class Comments extends Component {
         
         fetch('https://journal-backend1.herokuapp.com/journal-app/v1/comments', {
             method: 'POST',
-            body: data,
+            body: JSON.stringify(data),
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
