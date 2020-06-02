@@ -6,7 +6,7 @@
 This app is a journal that is meant for people who want to store their writings on the internet.
 
 ## Wireframe
-![WireFrame 1](WireFrame1.png)
+![WireFrame 1](https://github.com/LawrenceObote/JournalAPI/blob/master/assets/WireFrame1.png?raw=true)
 ![WireFrame 2](WireFrame2.png)
 ![WireFrame 3](WireFrame3.png)
 ![WireFrame 4](WireFrame4.png)
